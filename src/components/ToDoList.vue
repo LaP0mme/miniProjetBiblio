@@ -32,7 +32,7 @@ function handlerFaire(ch) {
     .then((dataJSON) => {
       console.log(dataJSON);
       // actualiser la liste des choses
-      getTodos();
+      getLivres();
     })
     .catch((error) => console.log(error));
 }
@@ -50,7 +50,7 @@ function handlerDelete(id) {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      getTodos();
+      getLivres();
     })
     .catch((error) => console.log(error));
 }
@@ -72,13 +72,13 @@ function handlerAdd(libelle) {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      getTodos();
+      getLivres();
     })
     .catch((error) => console.log(error));
 }
 // -- req AJAX pour récupérer les livres
 //    et les stocker dans le state listeC
-function getTodos() {
+function getLivres() {
   const fetchOptions = { method: "GET" };
   fetch(url, fetchOptions)
     .then((response) => {
@@ -91,14 +91,14 @@ function getTodos() {
       // pour chaque donnée renvoyée par l'API
       //  créer un objet instance de la classe Livre
       //  et l'ajouter dans la liste listeC
-      dataJSON.forEach((v) => listeC.push(new Livre(v.titre, v.qteEnStock, v.prix)));
+      dataJSON.forEach((v) => listeC.push(new Livre(v.titre, v.qtestock, v.prix)));
     })
     .catch((error) => console.log(error));
 }
 // -- fonction du cycle de vie du composant
 // exécutée 1 seule fois à la création
 onMounted(() => {
-  getTodos();
+  getLivres();
 });
 </script>
 
