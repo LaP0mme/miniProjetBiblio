@@ -1,5 +1,5 @@
 <template>
-  <h3>Application my ToDOList</h3>
+  <h3>Application Mini-Bibliothèque</h3>
 </template>
 
 <style scoped>

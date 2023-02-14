@@ -2,12 +2,12 @@
 import { reactive, onMounted } from "vue";
 import ToDoListItem from "./ToDoListItem.vue";
 import ToDoForm from "./ToDoForm.vue";
-import Chose from "../Chose";
+import Livre from "../Livre";
 
 const listeC = reactive([]);
 
-// -- l'url de l'API
-const url = "https://webmmi.iut-tlse3.fr/~pecatte/todos/public/1/todos";
+// -- l'url de l'API (l'id librairie = 26 car 26ème position dans la liste d'appel)
+const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/26/livres";
 
 // -- handler pour 'faire/défaire' une chose à prtir de l'index dans la liste
 function handlerFaire(ch) {
@@ -76,7 +76,7 @@ function handlerAdd(libelle) {
     })
     .catch((error) => console.log(error));
 }
-// -- req AJAX pour récupérer les todos
+// -- req AJAX pour récupérer les livres
 //    et les stocker dans le state listeC
 function getTodos() {
   const fetchOptions = { method: "GET" };
@@ -86,12 +86,12 @@ function getTodos() {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // -- vider la liste des choses
+      // -- vider la liste des livres
       listeC.splice(0, listeC.length);
       // pour chaque donnée renvoyée par l'API
-      //  créer un objet instance de la classe Chose
+      //  créer un objet instance de la classe Livre
       //  et l'ajouter dans la liste listeC
-      dataJSON.forEach((v) => listeC.push(new Chose(v.id, v.libelle, v.fait)));
+      dataJSON.forEach((v) => listeC.push(new Livre(v.titre, v.qteEnStock, v.prix)));
     })
     .catch((error) => console.log(error));
 }
@@ -107,9 +107,9 @@ onMounted(() => {
   <ToDoForm @addC="handlerAdd"></ToDoForm>
   <ul>
     <ToDoListItem
-      v-for="chose of listeC"
-      :key="chose.id"
-      :chose="chose"
+      v-for="livre of listeC"
+      :key="livre.id"
+      :livre="livre"
       @deleteC="handlerDelete"
       @faireC="handlerFaire"
     />

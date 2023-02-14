@@ -1,22 +1,22 @@
 <script setup>
-defineProps(["chose"]);
+defineProps(["livre"]);
 const emit = defineEmits(["deleteC", "faireC"]);
 </script>
 
 <template>
   <li>
-    {{ chose.pourAfficher() }}
+    {{ livre.pourAfficher() }}
     <!-- cette fois en param du handler 
           on n'utilise pas l'index dans le tableau
           mais directement l'id de la chose
     -->
-    <button @click="$emit('deleteC', chose.id)">Supprimer</button>
+    <button @click="$emit('deleteC', livre.id)">Supprimer</button>
     <!-- cette fois en param du handler 
           on n'utilise pas l'index dans la tableau 
           mais directement la chose à modifier
     -->
-    <button @click="$emit('faireC', chose)">
-      {{ chose.fait ? "Défaire" : "Faire" }}
+    <button @click="$emit('faireC', livre)">
+      {{ livre.fait ? "Défaire" : "Faire" }}
     </button>
   </li>
 </template>
