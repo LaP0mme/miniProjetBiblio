@@ -2,7 +2,8 @@
 export default class Livre {
 
   // Un livre est caractérisé par un id, un titre, une qte en stock et un prix
-  constructor(titre, qteEnStock, prix) {
+  constructor(id, titre, qteEnStock, prix) {
+    this._id = id;
     this._titre = titre;
     this._qteEnStock = qteEnStock;
     this._prix = prix;
@@ -35,6 +36,6 @@ export default class Livre {
     this._texte = texte;
   }
   pourAfficher() {
-    return `--> Titre [${this._titre}] Quantité en stock [${this._qteEnStock}] Prix : ${this._prix}`;
+    return `-->  Titre [${this._titre}] Quantité en stock [${this._qteEnStock}] Prix : ${this._prix} €  ID ${this._id}`;
   }
 }

@@ -1,11 +1,11 @@
 <script setup>
-import ToDoHeader from "./components/ToDoHeader.vue";
-import ToDoList from "./components/ToDoList.vue";
+import LivreHeader from "./components/LivreHeader.vue";
+import LivreList from "./components/LivreList.vue";
 </script>
 
 <template>
-  <ToDoHeader />
-  <ToDoList />
+  <LivreHeader />
+  <LivreList />
 </template>
 
 <style>
