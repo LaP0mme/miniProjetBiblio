@@ -2,7 +2,7 @@
 import { reactive, onMounted } from "vue";
 import LivreListItem from "./LivreListItem.vue";
 import LivreForm from "./LivreForm.vue";
-import Livre from "../Livre";
+import Livre from "../Livre.js";
 
 const listeC = reactive([]);
 
@@ -13,11 +13,13 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/26/livres";
 function handlerAddOneBook(livre) {
   // -- ajouter un livre au stock
   livre.addOneBook();
-  // -- entête http pour la req
+  // -- déclaration des variables relatives a un livre
+  // auquel on va ajouter un exemplaire
   let id = livre._id;
   let titre = livre._titre;
   let prix = livre._prix;
   let qteEnStock = livre._qteEnStock;
+  // -- entête http pour la req
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   // -- la chose modifiée est envoyé au serveur
@@ -46,11 +48,11 @@ function handlerAddOneBook(livre) {
 function handlerRemoveOneBook(livre) {
   // -- retirer un livre au stock
   livre.removeOneBook();
-  // -- entête http pour la req
   let id = livre._id;
   let titre = livre._titre;
   let prix = livre._prix;
   let qteEnStock = livre._qteEnStock;
+  // -- entête http pour la req
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   // -- la chose modifiée est envoyé au serveur
@@ -78,7 +80,7 @@ function handlerRemoveOneBook(livre) {
       })
       .catch((error) => console.log(error));
 }
-// -- handle pour supprimer un livre à partir de l'id du livre
+// -- handler pour supprimer un livre à partir de l'id du livre
 function handlerDelete(id) {
   console.log(id);
   const fetchOptions = {
@@ -96,11 +98,12 @@ function handlerDelete(id) {
     })
     .catch((error) => console.log(error));
 }
-// -- handle pour ajouter un nouveau livre à partir des données saisies dans le formulaire
+// -- handler pour ajouter un nouveau livre à partir des données saisies dans le formulaire
 function handlerAdd(titre, qteEnStock, prix) {
   console.log(titre);
   console.log(qteEnStock);
   console.log(prix);
+  // -- entête http pour la req
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   // --  le libelle de la nouvelle chose est envoyé au serveur
@@ -121,15 +124,11 @@ function handlerAdd(titre, qteEnStock, prix) {
     .catch((error) => console.log(error));
 }
 // ====== recherche de livres ======================
-// -- gestion du click sur le bouton
-// cible : le bouton d'id "pers"
-// event : click
-// action : liste des personnes vérifiant le critère de recherche
-// document.getElementById("titleButton").addEventListener("click", listeLivres);
+// -- handler pour rechercher les livres en entrant une chaine de carractère
+//  qui fait référence au titre du livre
 
-// ======  liste des personnes ==========
 function handlerListeLivres(title) {
-  // - l'url (la route) pour la recherche de personnes n'est pas la même
+  // - l'url (la route) pour la recherche de livres n'est pas la même
   const urlSearchLivres = url + "?search=" + title;
   const fetchOptions = {method: "GET"};
   console.log(urlSearchLivres)
@@ -147,7 +146,7 @@ function handlerListeLivres(title) {
           resHTML = resHTML + "<option>" +
               "Titre : " + l.titre +
               " qteEnStock : " +  l.qtestock +
-              " Prix : "+ l.prix + "</option>";
+              " Prix : "+ l.prix + "€"+ "</option>";
         }
         document.getElementById("bookList").innerHTML = resHTML;
       })
@@ -180,11 +179,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3>Liste des choses à faire</h3>
+
+  <h3>Liste des livres en stock</h3>
+
   <LivreForm
       @addBook="handlerAdd"
       @searchBook="handlerListeLivres"
   />
+  <div>
   <ul>
     <LivreListItem
       v-for="livre of listeC"
@@ -195,7 +197,18 @@ onMounted(() => {
       @removeStock="handlerRemoveOneBook"
     />
   </ul>
+  </div>
 </template>
 
+
 <style scoped>
+div{
+  background-image: url("../images/blurBackgroudLibrary.jpg");
+  background-repeat: repeat;
+}
+ul{
+  font-weight: bold;
+  margin-left: 60px;
+  color: black;
+}
 </style>
