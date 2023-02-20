@@ -1,14 +1,17 @@
 <template>
-  <h3>Application Mini-Bibliothèque</h3>
+  <h1>Application Mini-Librairie</h1>
 </template>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+h1 {
+  margin-top: 0px;
   text-align: center;
-  position: sticky;
-  top: 40px;
-  background-color: #9f5600;
+  position: fixed;
+  padding: 10px 560px;
+  background: #555;
+  color: #f1f1f1;
 }
+
 
 </style>

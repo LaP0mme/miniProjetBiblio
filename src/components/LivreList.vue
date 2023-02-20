@@ -179,15 +179,16 @@ onMounted(() => {
 </script>
 
 <template>
-
+  <div class="ContentLivreForm">
   <h3>Liste des livres en stock</h3>
 
   <LivreForm
       @addBook="handlerAdd"
       @searchBook="handlerListeLivres"
   />
-  <div>
-  <ul>
+  </div>
+  <div class="ContentLivreListeItem">
+  <ul class="ListeDesLivres">
     <LivreListItem
       v-for="livre of listeC"
       :key="livre.id"
@@ -202,13 +203,30 @@ onMounted(() => {
 
 
 <style scoped>
-div{
-  background-image: url("../images/blurBackgroudLibrary.jpg");
-  background-repeat: repeat;
+
+div.ContentLivreForm{
+  padding-top: 40px;
+  padding-bottom: 20px;
+  background-color: #ab916b;
 }
-ul{
+
+div.ContentLivreListeItem{
+  background-image: url("../images/blurBackgroudLibrary.jpg"), url("../images/blurBackgroudLibrary.jpg");
+  background-position: left, right;
+  background-repeat: repeat-y;
+  background-color: #9f5600;
+  text-align: center;
+
+}
+ul.ListeDesLivres{
+  object-position: center;
   font-weight: bold;
   margin-left: 60px;
   color: black;
+  display: inline-block;
+  text-align: left;
 }
+
+
 </style>
+
