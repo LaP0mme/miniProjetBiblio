@@ -207,6 +207,7 @@ if(isSearching==false) {
   <LivreHeader
       @searchBook="handlerListeLivres"
 />
+  <div class="allExceptHeader">
   <div class="ContentLivreForm">
   <h3>Liste des livres en stock</h3>
 
@@ -227,11 +228,14 @@ if(isSearching==false) {
     />
   </ul>
   </div>
+  </div>
 </template>
 
 
 <style scoped>
-
+div.allExceptHeader{
+  left:0;
+}
 div.ContentLivreForm{
   padding-top: 40px;
   padding-bottom: 20px;
