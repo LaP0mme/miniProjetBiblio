@@ -3,9 +3,11 @@ import { reactive, onMounted } from "vue";
 import LivreListItem from "./LivreListItem.vue";
 import LivreForm from "./LivreForm.vue";
 import Livre from "../Livre.js";
+import LivreHeader from "./LivreHeader.vue";
 
 const listeC = reactive([]);
-
+const listeSearch = reactive([]);
+let isSearching = false;
 // -- l'url de l'API (l'id librairie = 26 car 26ème position dans la liste d'appel)
 const url = "https://webmmi.iut-tlse3.fr/~pecatte/librairies/public/26/livres";
 
@@ -39,7 +41,13 @@ function handlerAddOneBook(livre) {
     .then((dataJSON) => {
       console.log(dataJSON);
       // actualiser la liste des livres
-      getLivres();
+      if(isSearching==false) {
+        getLivres();
+      }
+      if(isSearching==true) {
+        let searchWord = document.getElementById(title).value
+        handlerListeLivres(searchWord);
+      }
     })
     .catch((error) => console.log(error));
 }
@@ -72,7 +80,13 @@ function handlerRemoveOneBook(livre) {
       .then((dataJSON) => {
         console.log(dataJSON);
         // actualiser la liste des livres
-        getLivres();
+        if(isSearching==false) {
+          getLivres();
+        }
+        if(isSearching==true) {
+          let searchWord = document.getElementById(title).value
+          handlerListeLivres(searchWord);
+        }
         if(qteEnStock <= 0){
           handlerDelete(id);
         }
@@ -94,7 +108,13 @@ function handlerDelete(id) {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      getLivres();
+      if(isSearching==false) {
+        getLivres();
+      }
+      if(isSearching==true) {
+        let searchWord = document.getElementById(title).value
+        handlerListeLivres(searchWord);
+      }
     })
     .catch((error) => console.log(error));
 }
@@ -126,7 +146,6 @@ function handlerAdd(titre, qteEnStock, prix) {
 // ====== recherche de livres ======================
 // -- handler pour rechercher les livres en entrant une chaine de carractère
 //  qui fait référence au titre du livre
-
 function handlerListeLivres(title) {
   // - l'url (la route) pour la recherche de livres n'est pas la même
   const urlSearchLivres = url + "?search=" + title;
@@ -140,15 +159,19 @@ function handlerListeLivres(title) {
       })
       .then((dataJSON) => {
         console.log(dataJSON);
-        let resHTML = "";
+        /*let resHTML = "";
         // les livres sont le tableau "results"
         for (let l of dataJSON) {
           resHTML = resHTML + "<option>" +
               "Titre : " + l.titre +
               " qteEnStock : " +  l.qtestock +
               " Prix : "+ l.prix + "€"+ "</option>";
-        }
-        document.getElementById("bookList").innerHTML = resHTML;
+         */
+        listeC.splice(0, listeC.length);
+
+        listeSearch.splice(0, listeSearch.length);
+        dataJSON.forEach((v) => listeC.push(new Livre(v.id , v.titre, v.qtestock, v.prix)));
+        isSearching = true;
       })
       .catch((error) => console.log(error));
 }
@@ -173,18 +196,23 @@ function getLivres() {
 }
 // -- fonction du cycle de vie du composant
 // exécutée 1 seule fois à la création
-onMounted(() => {
-  getLivres();
-});
+if(isSearching==false) {
+  onMounted(() => {
+    getLivres();
+  });
+}
 </script>
 
 <template>
+  <LivreHeader
+      @searchBook="handlerListeLivres"
+/>
   <div class="ContentLivreForm">
   <h3>Liste des livres en stock</h3>
 
   <LivreForm
       @addBook="handlerAdd"
-      @searchBook="handlerListeLivres"
+
   />
   </div>
   <div class="ContentLivreListeItem">
@@ -207,17 +235,17 @@ onMounted(() => {
 div.ContentLivreForm{
   padding-top: 40px;
   padding-bottom: 20px;
-  background-color: #ab916b;
+  background-color: #F6EEE0;
 }
 
 div.ContentLivreListeItem{
   background-image: url("../images/blurBackgroudLibrary.jpg"), url("../images/blurBackgroudLibrary.jpg");
   background-position: left, right;
   background-repeat: repeat-y;
-  background-color: #9f5600;
+  background-color: #F4EAE6;
   text-align: center;
-
 }
+
 ul.ListeDesLivres{
   object-position: center;
   font-weight: bold;

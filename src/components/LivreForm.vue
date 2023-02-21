@@ -8,28 +8,69 @@ const emit = defineEmits(["addBook", "searchBook"]);
 
 <template>
   <div class="ContentForm">
-  <form @submit.prevent="$emit('searchBook', title)">
-    <input type="text" id="title" v-model="title" placeholder="titre du livre" />
-    <input type="submit" id="titleButton" placeholder="Rechercher">
-    <select id="bookList"></select>
-  </form>
-  <body>Ajouter un Livre</body>
+  <p>Ajouter un Livre</p>
   <form @submit.prevent="$emit('addBook', titre, qteEnStock, prix)">
     <input type="text" v-model="titre" placeholder="titre ?" />
     <input type="text" v-model="qteEnStock" placeholder="qteEnStock ?" />
     <input type="text" v-model="prix" placeholder="prix ?" />
-    <input type="submit" value="valider" />
+    <input id="buttonValider" type="submit" value="valider" />
   </form>
   </div>
 </template>
 
 <style scoped>
 
-body{
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #555;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #555;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #555;
+}
+
+div{
+  margin-top: 100px;
+}
+
+input{
+  margin-left: 5px;
+}
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid #E7D2CC;
+  background-color: #F6EEE0;
+  color: #555;
+}
+
+p{
   font-size: large;
   font-weight: bold;
-  margin-right: 1px;
-  margin-left: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #555;
 }
+#buttonValider{
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin-left: 10px;
+  transition-duration: 0.4s;
+  border: 2px solid #4CAF50;
+  border-radius: 4px;
+}
+#buttonValider:hover{
+  background-color: white;
+  color: black;
+}
+
+
 
 </style>
