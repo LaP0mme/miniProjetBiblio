@@ -9,7 +9,7 @@ const emit = defineEmits(["addBook", "searchBook"]);
   <div>
   <h1>Mon Application Mini-Librairie</h1>
   <form @submit.prevent="$emit('searchBook', title)">
-    <input type="text" id="title" v-model="title" placeholder="titre du livre" />
+    <input type="text" id="title" v-model="title" placeholder="Search..." />
     <input type="submit" id="titleButton" value="Rechercher">
   </form>
   </div>
