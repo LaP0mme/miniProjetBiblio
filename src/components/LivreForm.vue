@@ -6,6 +6,7 @@ const libelle = ref("");
 const emit = defineEmits(["addBook", "searchBook"]);
 </script>
 
+
 <template>
   <div class="ContentForm">
   <p>Ajouter un Livre</p>
@@ -19,7 +20,8 @@ const emit = defineEmits(["addBook", "searchBook"]);
 </template>
 
 <style scoped>
-
+// pour changer la couleur du "placeholder" pour que ce soit plus lisible
+//différent pour Internet Explorer et Microft Edge
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #555;
   opacity: 1; /* Firefox */
@@ -40,6 +42,7 @@ div{
 input{
   margin-left: 5px;
 }
+
 input[type=text] {
   border: none;
   border-bottom: 2px solid #E7D2CC;
@@ -54,6 +57,7 @@ p{
   margin-bottom: 10px;
   color: #555;
 }
+
 #buttonValider{
   background-color: #4CAF50; /* Green */
   color: white;
@@ -66,11 +70,10 @@ p{
   border: 2px solid #4CAF50;
   border-radius: 4px;
 }
+
 #buttonValider:hover{
   background-color: white;
   color: black;
 }
-
-
 
 </style>

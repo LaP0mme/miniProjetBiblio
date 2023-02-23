@@ -28,6 +28,7 @@ div {
   left: 0;
   width: 100%;
   border:  thick double #EEEDE7 ;
+
 }
 
 input{

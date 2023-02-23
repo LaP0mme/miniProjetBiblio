@@ -213,7 +213,6 @@ if(isSearching==false) {
 
   <LivreForm
       @addBook="handlerAdd"
-
   />
   </div>
   <div class="ContentLivreListeItem">
@@ -233,9 +232,11 @@ if(isSearching==false) {
 
 
 <style scoped>
+
 div.allExceptHeader{
   left:0;
 }
+
 div.ContentLivreForm{
   padding-top: 40px;
   padding-bottom: 20px;
@@ -258,7 +259,6 @@ ul.ListeDesLivres{
   display: inline-block;
   text-align: left;
 }
-
 
 </style>
 

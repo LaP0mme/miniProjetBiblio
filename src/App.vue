@@ -8,7 +8,7 @@ import LivreList from "./components/LivreList.vue";
 
 <style>
 
-html{
+body{
   margin-top: 0;
   left: 0;
   background-image: url("images/blurBackgroudLibrary.jpg"), url("images/blurBackgroudLibrary.jpg");
@@ -19,8 +19,8 @@ html{
 }
 LivreList{
   left: 0;
+  display: flex;
+  flex-flow: wrap;
 }
-body{
-  left: 0;
-}
+
 </style>
