@@ -20,8 +20,9 @@ const emit = defineEmits(["addBook", "searchBook"]);
 </template>
 
 <style scoped>
-// pour changer la couleur du "placeholder" pour que ce soit plus lisible
-//différent pour Internet Explorer et Microft Edge
+/* pour changer la couleur du "placeholder" pour que ce soit plus lisible
+ différent pour Internet Explorer et Microft Edge */
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #555;
   opacity: 1; /* Firefox */
