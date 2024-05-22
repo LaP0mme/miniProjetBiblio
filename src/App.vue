@@ -8,12 +8,28 @@ import LivreList from "./components/LivreList.vue";
 
 <style>
 
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  margin-top: 0;
+  left: 0;
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-color: #F4EAE6;
+  text-align: center;
+}
+
 body{
   margin-top: 0;
   left: 0;
-  background-image: url("images/blurBackgroudLibrary.jpg"), url("images/blurBackgroudLibrary.jpg");
-  background-position: left, right;
-  background-repeat: repeat-y;
+  background-image: url("images/background.jpg");
+  background-size: cover;
   background-color: #F4EAE6;
   text-align: center;
 }

@@ -8,7 +8,8 @@ const emit = defineEmits(["addBook", "searchBook"]);
 
 
 <template>
-  <div class="ContentForm">
+   <div class="ContentForm">
+
   <p>Ajouter un Livre</p>
   <form @submit.prevent="$emit('addBook', titre, qteEnStock, prix)">
     <input type="text" v-model="titre" placeholder="titre ?" />
@@ -16,6 +17,7 @@ const emit = defineEmits(["addBook", "searchBook"]);
     <input type="text" v-model="prix" placeholder="prix ?" />
     <input id="buttonValider" type="submit" value="valider" />
   </form>
+
   </div>
 </template>
 

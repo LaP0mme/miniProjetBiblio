@@ -2,16 +2,27 @@
   "name": "vue3-todo-list-api",
   "version": "0.0.0",
   "scripts": {
+    "serve": "vue-cli-service serve",
     "dev": "vite",
     "build": "vite build",
+    "lint": "vue-cli-service lint",
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
-    "vue": "^3.2.29"
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.6",
+    "axios": "^1.6.8",
+    "vue": "^3.2.29",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.1.0",
-    "vite": "^2.7.13"
+    "@vue/cli-service": "^4.5.13",
+    "vite": "^2.7.13",
+    "vue-cli-plugin-vite": "^1.0.0"
   },
   "keywords": [],
   "description": ""
